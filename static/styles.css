@@ -63,13 +63,3 @@ h1 {
     font-size: 4rem;
 }
 
-.game-info-container {
-    display: flex;
-    justify-content: center;
-}
-
-.game-info {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(50px, 100px));
-    grid-template-rows: repeat(3, minmax(50px, 100px));
-}

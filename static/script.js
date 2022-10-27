@@ -2,9 +2,13 @@ const boardContainer = document.querySelector('.board-container')
 const board = document.querySelector('.board')
 const startButton = document.querySelector('#start')
 const turnIndicator = document.querySelector('.turn-indicator')
+const player1Header = document.querySelector('#player1-header')
+const player2Header = document.querySelector('#player2-header')
 
-const player = (name, mark) => {
+
+const player = (name, playerID, mark) => {
     let score = 0
+    const id = playerID
     let playerMark = mark
     let playerName = name
     const addScore = () => {
@@ -17,11 +21,11 @@ const player = (name, mark) => {
     const sayHi = () => console.log(`Hello I am ${getName()}`)
     const changeName = (newName) => playerName = newName
     const changeMark = (mark) => playerMark = mark
-    return {getName, getMark, getScore, sayHi, addScore, showScore, changeName, changeMark}
+    return {getName, getMark, getScore, sayHi, addScore, showScore, changeName, changeMark, id}
 }
 
-const player1 = player('player1', null)
-const player2 = player('player2', null)
+const player1 = player('player1', 'player1', null)
+const player2 = player('player2', 'player2', null)
 
 
 const gameBoard = (() => {
@@ -61,7 +65,6 @@ const gameBoard = (() => {
                 gameBoard.boardArray[i] = mark
             }
             drawboard()
-            console.log(gameBoard.boardArray)
             controller.checkWin(mark, gameBoard.boardArray, currPlayer)
             controller.changeTurn()
         }
@@ -94,7 +97,7 @@ const controller = (() => {
     }
 
     const changeTurn = () => {
-        if (gameBoard.arrayFull()) endGame()
+        if (gameBoard.arrayFull()) showDraw()
         if (playerTurn === player1) {
             playerTurn = player2
         } else if (playerTurn === player2) {
@@ -106,21 +109,30 @@ const controller = (() => {
     const startGame = () => {
         controller.gameOn = true
         selectName(player1)
+        player1Header.textContent = player1.getName()
         selectMark(player1)
         selectName(player2)
+        player2Header.textContent = player2.getName()
         selectMark(player2)
         showTurn()
     }
 
     const showWin = (player) => {
         alert(`${player.getName()} wins!`)
+        player.addScore()
+        let playerWinTally = document.querySelector(`#${player.id}-wins`)
+        playerWinTally.textContent = player.getScore()
         playAgain()
     }
 
+    const showDraw = () => {
+        alert("It's a draw!")
+        playAgain()
+    }
+    
     const playAgain = () => {
         let response = confirm("Would you like to play again?")
         if (response) {
-            console.log('new game')
             gameBoard.reset()
         }
     }
@@ -129,49 +141,35 @@ const controller = (() => {
         const equalsMark = (item) => item === mark
         switch (true) {
             case [array[0], array[1], array[2]].every(equalsMark):
-                console.log('1')
                 showWin(player)
                 break
             case [array[3], array[4], array[5]].every(equalsMark): 
-                console.log('2')
                 showWin(player)
                 break
             case [array[6], array[7], array[8]].every(equalsMark): 
-                console.log('3')
                 showWin(player)
                 break
             case [array[0], array[3], array[6]].every(equalsMark):
-                console.log('4')
                 showWin(player)
                 break
             case [array[1], array[4], array[7]].every(equalsMark):
-                console.log('5')
                 showWin(player)
                 break
             case [array[2], array[5], array[8]].every(equalsMark):
-                console.log('6')
                 showWin(player)
                 break
             case [array[0], array[4], array[8]].every(equalsMark):
-                console.log('7')
                 showWin(player)
                 break
             case [array[2], array[4], array[6]].every(equalsMark):
-                console.log('8')
                 showWin(player)
                 break
             default:
                 break;
     }
     }
-    const endGame = () => {
-        alert("It's a draw")
-        playAgain()
-    }
-
-    return {startGame, getTurn, changeTurn, selectMark, showTurn, endGame, checkWin, gameOn}
+    return {startGame, getTurn, changeTurn, selectMark, showTurn, checkWin, showDraw, gameOn}
 })()
-
 
 
 startButton.addEventListener('click', controller.startGame)

@@ -93,7 +93,7 @@ const controller = (() => {
     const getTurn = () => playerTurn
     const showTurn = () => {
         let player = getTurn()
-        turnIndicator.textContent = `It is ${player.getName()}'s turn`
+        turnIndicator.textContent = `${player.getName()}'s turn`
     }
 
     const changeTurn = () => {

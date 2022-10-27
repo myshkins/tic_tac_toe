@@ -4,6 +4,9 @@
     --board-sq-color: rgb(3, 18, 87);
     --board-sq-bg-color: aquamarine;
     --board-sq-shadow-color: rgb(76, 97, 19);
+    --btn-bg-color: rgb(192, 214, 207);
+    --btn-border-color: rgb(79, 94, 89);
+    --btn-text-color: rgb(9, 18, 59);
 }
 
 html {
@@ -18,7 +21,8 @@ body {
 body,html {
     margin: 0;
     padding: 0;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'DatalegreyaThin', Helvetica, Arial;
+    font-size: 1rem;
 }
 
 h1 {
@@ -26,11 +30,13 @@ h1 {
 }
 
 .top {
-    margin: 2rem;
+    margin: 3rem 0 1rem;
     display: flex;
     justify-content: center;
     gap: 1rem;
+    font-size: 1.5rem;
 }
+
 
 .board-container {
     display: flex;
@@ -38,7 +44,7 @@ h1 {
 }
 
 .board {
-    margin: 3rem;
+    margin: 0 3rem 3rem;
     padding: 2rem;
     display: grid;
     min-width: 320px;
@@ -57,9 +63,26 @@ h1 {
     border-radius: 4px;
     filter: drop-shadow(1px 1px 2px var(--board-sq-shadow-color));
     color: var(--board-sq-color);
-    font-family: 'DatalegreyaThin';
+    font-family: 'DatalegreyaThin', Helvetica, Arial;
     font-weight: bold;
     font-style: normal; 
     font-size: 4rem;
 }
 
+.bottom-container {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    margin-right: 2rem;
+    margin-left: 3rem;
+    background-color: var(--btn-bg-color);
+    border-radius: 4px;
+    border: 1px solid var(--btn-border-color);
+    height: fit-content;
+    padding: .5rem;
+    font-family: 'DatalegreyaThin', Helvetica, Arial;
+    font-size: 2rem;
+    color: var(--btn-text-color);
+}

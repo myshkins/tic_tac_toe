@@ -1,0 +1,75 @@
+:root {
+    --bg-color: rgb(255, 255, 255);
+    --board-bg-color: rgb(187, 141, 166);
+    --board-sq-color: rgb(3, 18, 87);
+    --board-sq-bg-color: aquamarine;
+    --board-sq-shadow-color: rgb(76, 97, 19);
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--bg-color);
+}
+
+body,html {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.top {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.board-container {
+    display: flex;
+    justify-content: center;
+}
+
+.board {
+    margin: 3rem;
+    padding: 2rem;
+    display: grid;
+    min-width: 320px;
+    grid-template-columns: repeat(3, minmax(50px, 100px));
+    grid-template-rows: repeat(3, minmax(50px, 100px));
+    gap: 1rem;
+    background-color: var(--board-bg-color);
+    border-radius: 4px;
+}
+
+.board-square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--board-sq-bg-color);
+    border-radius: 4px;
+    filter: drop-shadow(1px 1px 2px var(--board-sq-shadow-color));
+    color: var(--board-sq-color);
+    font-family: 'DatalegreyaThin';
+    font-weight: bold;
+    font-style: normal; 
+    font-size: 4rem;
+}
+
+.game-info-container {
+    display: flex;
+    justify-content: center;
+}
+
+.game-info {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(50px, 100px));
+    grid-template-rows: repeat(3, minmax(50px, 100px));
+}
